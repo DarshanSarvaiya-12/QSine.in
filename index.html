@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qsine.in | The Agency</title>
+    <title>Qsine.in | The Marketing Agency</title>
     <style>
         /* --- Base Styles & Typography --- */
         * {
@@ -14,7 +14,6 @@
 
         body {
             font-family: Georgia, 'Times New Roman', Times, serif;
-            /* Fixed gradient syntax for smooth colorful flow */
             background: linear-gradient(45deg, #e1c 2%, #a1c 50%, #fbc2eb 100%);
             background-attachment: fixed;
             color: #fff;
@@ -65,13 +64,13 @@
 
         /* --- Hero Section --- */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 20px 40px 20px;
+            padding: 120px 20px 20px 20px;
         }
 
         .hero h1 {
@@ -81,7 +80,6 @@
             animation: fadeInDown 1s ease-out;
         }
 
-        /* --- Glass Button Box --- */
         .button-group-glass {
             margin-top: 30px;
             padding: 25px;
@@ -95,6 +93,26 @@
             flex-wrap: wrap;
             justify-content: center;
             animation: fadeInDown 1.2s ease-out;
+        }
+
+        .btn-hero-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            min-width: 220px;
+        }
+
+        .mid-section-contact {
+            text-align: center;
+            margin: 10px 0 30px 0;
+            animation: fadeInDown 1.4s ease-out;
+        }
+
+        .btn-contact-mid {
+            border: 2px solid #000 !important;
+            background: #fff;
+            color: #000;
+            font-size: 1.1rem;
+            padding: 12px 40px;
         }
 
         /* --- Buttons --- */
@@ -126,17 +144,15 @@
             color: #fff;
         }
 
-        .btn-main {
-            margin-top: 20px;
-            font-size: 1.1rem;
-            padding: 15px 40px;
+        .btn-contact-green {
+            border: 1px solid #000 !important;
         }
 
         /* --- Cards Section --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 25px 20px 25px; 
+            padding: 20px 25px 20px 25px; 
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             justify-content: center;
@@ -176,6 +192,19 @@
             transform: scale(1.05);
             background: rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        /* Pricing Detail Styling in Modal */
+        .pricing-list {
+            text-align: left;
+            margin: 15px 0;
+            padding: 0 10px;
+            list-style: none;
+        }
+        .pricing-list li {
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
         }
 
         /* --- Social Section --- */
@@ -243,7 +272,6 @@
             overflow-y: auto;
         }
 
-        /* Dual Popup Animations */
         #personalUpper, #businessUpper { transform: translateY(-100vh); }
         #personalLower, #businessLower { transform: translateY(100vh); }
 
@@ -254,11 +282,8 @@
         
         .modal-overlay.active .modal-card:not([id*="Upper"]):not([id*="Lower"]) { transform: translateY(0); }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
-        /* --- Portfolio Grid inside Modal --- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -279,26 +304,36 @@
             transition: 0.3s;
         }
 
-        .portfolio-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .portfolio-item:hover { background: rgba(255, 255, 255, 0.2); }
 
-        /* --- Normal Page Flow Footer --- */
+        /* --- Fixed Footer Styles --- */
         footer {
             width: 100%;
             padding: 20px 40px 40px 40px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end; 
             position: relative;
             background: transparent;
             z-index: 100;
+        }
+
+        .footer-left {
+            flex: 1;
+        }
+
+        .footer-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
         }
 
         .status-text {
             color: #000; 
             font-size: 0.85rem;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
         /* --- Animations --- */
@@ -322,52 +357,54 @@
     <header id="draggableHeader">
         <div class="logo">Qsine.in</div>
         <nav>
-            <a href="#">Work</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#" data-en="Work" data-gu="કામ">Work</a>
+            <a href="#" data-en="About" data-gu="વિષે">About</a>
+            <a href="#" data-en="Contact" data-gu="સંપર્ક">Contact</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Creative Design Agency</h1>
-        <p style="color: white; font-size: 1.2rem;">We build the future with Glassmorphism.</p>
+        <h1 id="hero-title">Digital Marketing Agency</h1>
+        <p id="hero-desc" style="color: white; font-size: 1.2rem;">We help small businesses across India build their digital presence</p>
         
-        <button class="btn btn-main" onclick="openPortfolio()">View Our Portfolio</button>
-
         <div class="button-group-glass">
-            <button class="btn" onclick="openPersonalFlow()">Personal Website</button>
-            <button class="btn" onclick="openBusinessFlow()">Business Website</button>
+            <button class="btn btn-hero-large" id="btn-personal" onclick="openPersonalFlow()">Personal Website</button>
+            <button class="btn btn-hero-large" id="btn-business" onclick="openBusinessFlow()">Business Website</button>
         </div>
     </section>
+
+    <div class="mid-section-contact">
+        <button class="btn btn-contact-mid" id="btn-mid-contact" onclick="openContact()">Contact Us</button>
+    </div>
 
     <div class="container">
         <div class="card" id="card-web">
             <div>
-                <h3 class="card-title">Web Design</h3>
-                <p class="card-text">Creating stunning, colorful interfaces that capture attention.</p>
+                <h3 class="card-title">Website Design</h3>
+                <p class="card-text"><br>Create New Generation Professional Websites with Mobile first approach</p>
             </div>
-            <button class="btn" onclick="openLearnMore('card-web')">Learn More</button>
+            <button class="btn btn-learn" onclick="openLearnMore('card-web')">Learn More</button>
         </div>
         <div class="card" id="card-brand">
             <div>
-                <h3 class="card-title">Branding</h3>
-                <p class="card-text">Giving your agency a unique identity in the digital world.</p>
+                <h3 class="card-title">Meta Ads</h3>
+                <p class="card-text"><br>Create and Run Meta Ads and increase the Digital presence of your business</p>
             </div>
-            <button class="btn" onclick="openLearnMore('card-brand')">Learn More</button>
+            <button class="btn btn-learn" onclick="openLearnMore('card-brand')">Learn More</button>
         </div>
         <div class="card" id="card-dev">
             <div>
-                <h3 class="card-title">Development</h3>
-                <p class="card-text">Fast, mobile-friendly, and responsive code for every screen.</p>
+                <h3 class="card-title">Grow Your Sales</h3>
+                <p class="card-text"><br>Get more Customers from Website and Meta Ads. to your Shop/Business</p>
             </div>
-            <button class="btn" onclick="openLearnMore('card-dev')">Learn More</button>
+            <button class="btn btn-learn" onclick="openLearnMore('card-dev')">Learn More</button>
         </div>
         <div class="card" id="card-pricing">
             <div>
-                <h3 class="card-title">Pricing</h3>
-                <p class="card-text">Affordable and transparent plans tailored to your needs.</p>
+                <h3 class="card-title">Transparent Pricing</h3>
+                <p class="card-text"><br>We provide Affordable and Transparent Plans for your Business without any Hidden Charges</p>
             </div>
-            <button class="btn" onclick="openLearnMore('card-pricing')">Learn More</button>
+            <button class="btn btn-learn" onclick="openLearnMore('card-pricing')">Learn More</button>
         </div>
     </div>
 
@@ -382,7 +419,7 @@
 
     <div class="modal-overlay" id="personalModal" onclick="closeModals()">
         <div class="modal-card" id="personalUpper" onclick="event.stopPropagation()">
-            <h2 style="font-size: 1.2rem; margin-bottom: 10px;">Personal Portfolios</h2>
+            <h2 style="font-size: 1.2rem; margin-bottom: 10px;" class="m-title">Personal Portfolios</h2>
             <div class="portfolio-grid">
                 <a href="https://darshansarvaiya.vercel.app/" target="_blank" class="portfolio-item">Darshan Portfolio 1</a>
                 <a href="https://darshansarvaiya-12.github.io/Sample-Personal-Portfolio---1/" class="portfolio-item">Darshan Portfolio 2</a>
@@ -390,18 +427,18 @@
             </div>
         </div>
         <div class="modal-card" id="personalLower" onclick="event.stopPropagation()">
-            <h2 style="font-size: 1.2rem; margin-bottom: 15px;">Contact us</h2>
+            <h2 style="font-size: 1.2rem; margin-bottom: 15px;">Contact Us</h2>
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass">WhatsApp</a>
-                <a href="mailto:darshansarvaiya820@gmail.com" class="btn btn-glass">Email</a>
+                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass btn-contact-green">WhatsApp</a>
+                <a href="tel:+917016274277" class="btn btn-glass btn-contact-green btn-call-text">Call Us</a>
             </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8; cursor:pointer;" onclick="closeModals()">Tap to Close</p>
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8; cursor:pointer;" onclick="closeModals()" class="m-close">Tap to Close</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="businessModal" onclick="closeModals()">
         <div class="modal-card" id="businessUpper" onclick="event.stopPropagation()">
-            <h2 style="font-size: 1.2rem; margin-bottom: 10px;">Business Samples</h2>
+            <h2 style="font-size: 1.2rem; margin-bottom: 10px;" class="m-title-bus">Business Samples</h2>
             <div class="portfolio-grid">
                 <a href="https://assumein.vercel.app/" target="_blank" class="portfolio-item">Assume.in (Fintech)</a>
                 <a href="#" class="portfolio-item">Business Project 2</a>
@@ -409,100 +446,197 @@
             </div>
         </div>
         <div class="modal-card" id="businessLower" onclick="event.stopPropagation()">
-            <h2 style="font-size: 1.2rem; margin-bottom: 15px;">Contact us</h2>
+            <h2 style="font-size: 1.2rem; margin-bottom: 15px;">Contact Us</h2>
             <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass">WhatsApp</a>
-                <a href="mailto:darshansarvaiya820@gmail.com" class="btn btn-glass">Email</a>
+                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass btn-contact-green">WhatsApp</a>
+                <a href="tel:+917016274277" class="btn btn-glass btn-contact-green btn-call-text">Call Us</a>
             </div>
-            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8; cursor:pointer;" onclick="closeModals()">Tap to Close</p>
+            <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.8; cursor:pointer;" onclick="closeModals()" class="m-close">Tap to Close</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="contactModal" onclick="closeModals()">
         <div class="modal-card" onclick="event.stopPropagation()">
-            <h2 style="margin-bottom: 20px;">Contact us</h2>
+            <h2 style="margin-bottom: 20px;">Contact Us</h2>
             <div style="display: flex; flex-direction: column; gap: 15px;">
-                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass">WhatsApp</a>
-                <a href="mailto:darshansarvaiya820@gmail.com" class="btn btn-glass">Email</a>
+                <a href="https://wa.me/917016274277" target="_blank" class="btn btn-glass btn-contact-green">WhatsApp</a>
+                <a href="tel:+917016274277" class="btn btn-glass btn-contact-green btn-call-text">Call Us</a>
             </div>
-            <p style="margin-top: 20px; font-size: 1rem; opacity: 0.9; cursor:pointer;" onclick="closeModals()">Close</p>
+            <p style="margin-top: 20px; font-size: 1rem; opacity: 0.9; cursor:pointer;" onclick="closeModals()" class="m-close-simple">Close</p>
         </div>
     </div>
 
     <div class="modal-overlay" id="aboutModal" onclick="closeModals()">
         <div class="modal-card" onclick="event.stopPropagation()">
-            <h2 style="margin-bottom: 20px;">About Qsine.in</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 20px;">Qsine.in is a forward-thinking Creative Design Agency specializing in modern UI/UX, Glassmorphism design trends, and high-performance web development.</p>
-            <button class="btn" onclick="closeModals()">Got it</button>
+            <h2 style="margin-bottom: 20px;" id="about-modal-title">About Qsine.in</h2>
+            <p style="font-size: 0.95rem; margin-bottom: 20px;" id="about-modal-text">Qsine.in is a forward-thinking Creative Design Agency specializing in modern UI/UX, Glassmorphism design trends, and high-performance web development. Qsine Company is the Subsidiary company of PiCell Company.</p>
+            <button class="btn" onclick="closeModals()" id="about-modal-btn">Got it</button>
         </div>
     </div>
 
     <div class="modal-overlay" id="learnMoreModal" onclick="closeModals()">
         <div class="modal-card" onclick="event.stopPropagation()">
             <h2 id="learnMoreTitle" style="margin-bottom: 20px;"></h2>
-            <p id="learnMoreContent" style="font-size: 0.95rem; margin-bottom: 25px;"></p>
-            <button class="btn" onclick="closeModals()">Back to Site</button>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="portfolioModal" onclick="closeModals()">
-        <div class="modal-card" onclick="event.stopPropagation()">
-            <h2 style="margin-bottom: 10px;">Our Portfolio</h2>
-            <div class="portfolio-grid" id="portfolioGrid"></div>
-            <button class="btn" style="margin-top: 25px;" onclick="closeModals()">Close</button>
+            <div id="learnMoreContent" style="font-size: 0.95rem; margin-bottom: 25px;"></div>
+            <button class="btn" onclick="closeModals()" id="learn-back-btn">Back to Site</button>
         </div>
     </div>
 
     <footer id="siteFooter">
-        <div class="status-text">• All Systems Normal</div>
-        <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" onclick="openAbout()">About us</button>
+        <div class="footer-left">
+            <div class="status-text" id="status-txt">• All Systems Normal</div>
+        </div>
+        <div class="footer-btns">
+            <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" onclick="toggleLanguage()" id="lang-btn">Gujarati</button>
+            <button class="btn" style="padding: 8px 20px; font-size: 0.9rem;" onclick="openAbout()" id="about-btn">About us</button>
+        </div>
     </footer>
 
     <script>
-        const portfolioProjects = [
-            { name: "Assume.in", url: "https://assumein.vercel.app/" },
-            { name: "Darshan Sarvaiya", url: "https://darshansarvaiya.vercel.app/" },
-            { name: "Wisel", url: "#" },
-            { name: "Qcell App", url: "#" }
-        ];
+        let currentLang = 'en';
+
+        const translations = {
+            en: {
+                heroTitle: "Digital Marketing Agency",
+                heroDesc: "We help small businesses across India build their digital presence",
+                personalBtn: "Personal Website",
+                businessBtn: "Business Website",
+                learnMore: "Learn More",
+                aboutUs: "About us",
+                langBtn: "Gujarati",
+                status: "• All Systems Normal",
+                modalClose: "Tap to Close",
+                modalCloseSimple: "Close",
+                aboutTitle: "About Qsine.in",
+                aboutText: "Qsine.in is a forward-thinking Creative Design Agency specializing in modern UI/UX, Glassmorphism design trends, and high-performance web development. Qsine Company is the Subsidiary company of PiCell Company.",
+                aboutGotIt: "Got it",
+                backSite: "Back to Site",
+                callUs: "Call Us",
+                cardTitles: ["Website Design", "Meta Ads", "Grow Your Sales", "Transparent Pricing"],
+                cardTexts: [
+                    "Create New Generation Professional Websites with Mobile first approach",
+                    "Create and Run Meta Ads and increase the Digital presence of your business",
+                    "Get more Customers from Website and Meta Ads. to your Shop/Business",
+                    "We provide Affordable and Transparent Plans for your Business without any Hidden Charge"
+                ],
+                pricingDetails: {
+                    webCost: "Website Cost",
+                    plus: "Plus",
+                    month: "month",
+                    adsMgmt: "Meta Ads Management",
+                    downPay: "Down Payment"
+                }
+            },
+            gu: {
+                heroTitle: "ડિજિટલ માર્કેટિંગ એજન્સી",
+                heroDesc: "અમે સમગ્ર ભારતમાં નાના વ્યવસાયોને તેમની ડિજિટલ હાજરી બનાવવામાં મદદ કરીએ છીએ",
+                personalBtn: "પર્સનલ વેબસાઇટ",
+                businessBtn: "બિઝનેસ વેબસાઇટ",
+                learnMore: "વધુ જાણો",
+                aboutUs: "અમારા વિશે",
+                langBtn: "English",
+                status: "• બધી સિસ્ટમ સામાન્ય છે",
+                modalClose: "બંધ કરવા માટે ટેપ કરો",
+                modalCloseSimple: "બંધ કરો",
+                aboutTitle: "Qsine.in વિશે",
+                aboutText: "Qsine.in એ આધુનિક UI/UX, ગ્લાસમોર્ફિઝમ ડિઝાઇન અને હાઇ-પર્ફોર્મન્સ વેબ ડેવલપમેન્ટમાં નિષ્ણાત સર્જનાત્મક ડિઝાઇન એજન્સી છે. Qsine કંપની એ PiCell કંપનીની પેટાકંપની છે.",
+                aboutGotIt: "સમજાઈ ગયું",
+                backSite: "સાઇટ પર પાછા જાઓ",
+                callUs: "કોલ કરો",
+                cardTitles: ["વેબસાઇટ ડિઝાઇન", "મેટા જાહેરાતો", "વેચાણ વધારો", "પારદર્શક કિંમત"],
+                cardTexts: [
+                    "મોબાઇલ ફર્સ્ટ અભિગમ સાથે નવી પેઢીની વ્યાવસાયિક વેબસાઇટ્સ બનાવો",
+                    "મેટા એડ્સ બનાવો અને ચલાવો અને તમારા વ્યવસાયની ડિજિટલ હાજરી વધારો",
+                    "વેબસાઇટ અને મેટા એડ્સથી તમારા વ્યવસાય માટે વધુ ગ્રાહકો મેળવો",
+                    "અમે તમારા વ્યવસાય માટે કોઈપણ છુપાયેલા ચાર્જ વિના સસ્તા અને પારદર્શક યોજનાઓ પ્રદાન કરીએ છીએ."
+                ],
+                pricingDetails: {
+                    webCost: "વેબસાઇટ કિંમત",
+                    plus: "પ્લસ",
+                    month: "મહિનો",
+                    adsMgmt: "મેટા જાહેરાત સંચાલન",
+                    downPay: "ડાઉન પેમેન્ટ"
+                }
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'gu' : 'en';
+            const t = translations[currentLang];
+
+            document.getElementById('hero-title').innerText = t.heroTitle;
+            document.getElementById('hero-desc').innerText = t.heroDesc;
+            document.getElementById('btn-personal').innerText = t.personalBtn;
+            document.getElementById('btn-business').innerText = t.businessBtn;
+
+            document.querySelectorAll('nav a').forEach(a => {
+                a.innerText = a.getAttribute(`data-${currentLang}`);
+            });
+
+            const titles = document.querySelectorAll('.card-title');
+            const texts = document.querySelectorAll('.card-text');
+            const learnBtns = document.querySelectorAll('.btn-learn');
+            t.cardTitles.forEach((txt, i) => titles[i].innerText = txt);
+            t.cardTexts.forEach((txt, i) => texts[i].innerHTML = `<br>${txt}`);
+            learnBtns.forEach(btn => btn.innerText = t.learnMore);
+
+            document.getElementById('lang-btn').innerText = t.langBtn;
+            document.getElementById('about-btn').innerText = t.aboutUs;
+            document.getElementById('status-txt').innerText = t.status;
+
+            document.querySelectorAll('.m-close').forEach(el => el.innerText = t.modalClose);
+            document.querySelectorAll('.m-close-simple').forEach(el => el.innerText = t.modalCloseSimple);
+            document.querySelectorAll('.btn-call-text').forEach(el => el.innerText = t.callUs);
+            
+            document.getElementById('about-modal-title').innerText = t.aboutTitle;
+            document.getElementById('about-modal-text').innerText = t.aboutText;
+            document.getElementById('about-modal-btn').innerText = t.aboutGotIt;
+            document.getElementById('learn-back-btn').innerText = t.backSite;
+        }
 
         function openPersonalFlow() { document.getElementById('personalModal').classList.add('active'); }
         function openBusinessFlow() { document.getElementById('businessModal').classList.add('active'); }
-
-        function openPortfolio() {
-            const grid = document.getElementById('portfolioGrid');
-            grid.innerHTML = ''; 
-            portfolioProjects.forEach(project => {
-                const item = document.createElement('a');
-                item.href = project.url;
-                item.target = "_blank";
-                item.className = "portfolio-item";
-                item.innerHTML = `<span>${project.name}</span> <span style="font-size:0.8rem;">></span>`;
-                grid.appendChild(item);
-            });
-            document.getElementById('portfolioModal').classList.add('active');
-        }
-
         function openContact() { document.getElementById('contactModal').classList.add('active'); }
         function openAbout() { document.getElementById('aboutModal').classList.add('active'); }
 
         function openLearnMore(cardId) {
             const card = document.getElementById(cardId);
             const title = card.querySelector('.card-title').innerText;
-            const fullDetails = {
-                'Web Design': "Our Web Design service focuses on Glassmorphism and modern UI/UX.",
-                'Branding': "Branding at Qsine.in is about creating a visual story.",
-                'Development': "We write clean, high-performance code.",
-                'Pricing': "We offer competitive pricing. Contact us for a quote."
-            };
+            const t = translations[currentLang];
+            const p = t.pricingDetails;
+
+            let contentHtml = "";
+
+            if (cardId === 'card-pricing') {
+                contentHtml = `
+                    <p style="margin-bottom: 15px;">${currentLang === 'en' ? "Honest, affordable plans with no hidden charges:" : "કોઈ છુપાયેલા ચાર્જ વિના પ્રામાણિક, સસ્તા પ્લાન:"}</p>
+                    <ul class="pricing-list">
+                        <li>• <strong>${p.webCost} :</strong> 3999 <br><span style="font-size:0.85rem; opacity:0.8;">${p.plus} 600/${p.month}</span></li>
+                        <li>• <strong>${p.adsMgmt} :</strong> 3999/${p.month}</li>
+                        <li>• <strong>${p.downPay} :</strong> 1000</li>
+                    </ul>
+                `;
+            } else {
+                const fullDetailsEN = {
+                    'Website Design': "We build fast, modern, and mobile-friendly websites that make your business look professional online and turn visitors into real customers.",
+                    'Meta Ads': "We create and run targeted Facebook & Instagram ad campaigns that put your business in front of thousands of local buyers — driving real traffic to your website and footfall to your shop.",
+                    'Grow Your Sales': "From your first online impression to a customer walking through your door — we build the complete digital system that converts strangers into paying customers, consistently."
+                };
+                const fullDetailsGU = {
+                    'વેબસાઇટ ડિઝાઇન': "અમે ઝડપી, આધુનિક અને મોબાઇલ-ફ્રેન્ડલી વેબસાઇટ્સ બનાવીએ છીએ જે તમારા વ્યવસાયને ઓનલાઇન વ્યાવસાયિક બનાવે છે.",
+                    'મેટા જાહેરાતો': "અમે લક્ષિત ફેસબુક અને ઇન્સ્ટાગ્રામ જાહેરાત ઝુંબેશ બનાવીએ છીએ અને ચલાવીએ છીએ જે હજારો સ્થાનિક ખરીદદારો સુધી પહોંચે છે.",
+                    'વેચાણ વધારો': "તમારી પ્રથમ ઓનલાઇન છાપથી લઈને ગ્રાહક તમારા દરવાજે આવે ત્યાં સુધી - અમે સંપૂર્ણ ડિજિટલ સિસ્ટમ બનાવીએ છીએ."
+                };
+                const details = currentLang === 'en' ? fullDetailsEN : fullDetailsGU;
+                contentHtml = `<p>${details[title] || ""}</p>`;
+            }
+
             document.getElementById('learnMoreTitle').innerText = title;
-            document.getElementById('learnMoreContent').innerText = fullDetails[title];
+            document.getElementById('learnMoreContent').innerHTML = contentHtml;
             document.getElementById('learnMoreModal').classList.add('active');
         }
 
-        function closeModals() {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-        }
+        function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active')); }
 
         const header = document.getElementById('draggableHeader');
         let isDragging = false, offsetX, offsetY;
@@ -531,10 +665,9 @@
         window.addEventListener('mouseup', stopDragging);
         window.addEventListener('touchend', stopDragging);
 
-        const observerOptions = { threshold: 0.2 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, observerOptions);
+        }, { threshold: 0.2 });
         document.querySelectorAll('.card').forEach(card => observer.observe(card));
     </script>
 </body>
